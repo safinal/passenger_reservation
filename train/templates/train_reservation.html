@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title>
+    </head>
+
+    <body>
+        <form action="", method="get">
+            Starting date: <input type="date" name="starting_date" required></input> <br>
+            {{ form.as_p }}
+            <button type="submit" value="Submit">Search</button>
+        </form>
+        {% if trips != False %}
+            {% for trip in trips %}
+                <p>{{ trip.train.company.name }}</p>
+                <p>{{ trip.origin_city }} - {{ trip.destination_city }}</p>
+                <p>{{ trip.starting_date }} {{ trip.starting_time }}</p>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>
