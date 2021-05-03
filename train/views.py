@@ -1,8 +1,11 @@
 from django.db.models import F
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Trip
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/login/')
 def train_reservation(request):
     if request.method == 'GET':
         context = {'trips': False}
@@ -24,3 +27,8 @@ def train_reservation(request):
             if query.count() > 0:
                 context['trips'] = query
         return render(request=request, template_name='train_reservation.html', context=context)
+
+
+@login_required(login_url='/login/')
+def get_ticket(request):
+    pass

@@ -68,6 +68,9 @@
     </head>
 
     <body>
+        <form method="POST" action="/logout/">
+            <button type="submit">Logout</button>
+        </form> <br>
         <form autocomplete="off" method="get">
             <div class="autocomplete" style="width:300px;">
                 <label for="origin_city">Origin City: </label>
@@ -92,7 +95,9 @@
                     <p>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</p>
                     <p>{{ trip.starting_date }}</p>
                     <p>{{ trip.starting_time }}</p>
-                    <button type="submit" value="Submit">Buy</button>
+                    <form method="POST" action="/train/get-ticket/">
+                        <button type="submit">Get Ticket</button>
+                    </form> <br>
                 </div>
             {% endfor %}
         {% endif %}
