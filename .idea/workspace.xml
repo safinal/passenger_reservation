@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29d68f87-7635-4fcb-bdef-304f4b800306" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/train/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/wsgi.py" afterDir="false" />
+    <list default="true" id="c3a4a600-b234-43cd-b8dd-0100d2d54a15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/train/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/cities.py" beforeDir="false" afterPath="$PROJECT_DIR$/train/cities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/train/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/templates/train_reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/train/templates/train_reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/validators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/train/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +24,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1ryk2ydmXsXsFvo8cMi1wYBdScp" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1s1dke49DgRH6s9a3hgxzsbOovu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -28,12 +42,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunManager">
-    <configuration name="passenger_reservation" type="Python.DjangoServer" factoryName="Django server">
-      <module name="passenger_reservation" />
+    <configuration name="config" type="Python.DjangoServer" factoryName="Django server">
+      <module name="config" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -60,12 +72,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="29d68f87-7635-4fcb-bdef-304f4b800306" name="Default Changelist" comment="" />
-      <created>1619955522958</created>
+      <changelist id="c3a4a600-b234-43cd-b8dd-0100d2d54a15" name="Default Changelist" comment="" />
+      <created>1620044175444</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1619955522958</updated>
-      <workItem from="1619955527355" duration="39471000" />
+      <updated>1620044175444</updated>
+      <workItem from="1620044198684" duration="11755000" />
     </task>
     <servers />
   </component>
