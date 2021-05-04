@@ -3,5 +3,5 @@ from .views import train_reservation, get_ticket
 
 urlpatterns = [
     path('', train_reservation),
-    path('get-ticket/', get_ticket)
+    path('<int:trip_id>/', get_ticket)
 ]

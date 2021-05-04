@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
+<head>
+    <title>
 
-        </title>
-    </head>
-    <body>
-        <form method="POST">
-            <label for="username">Mobile Number: </label>
-            <input type="text" name="username" id="username"><br>
-            <label for="password1">Password: </label>
-            <input type="password" name="password1" id="password1"><br>
-            <label for="password2">Password Confirmation: </label>
-            <input type="password" name="password2" id="password2"><br>
-            <button type="submit" value="Submit">Submit</button>
-        </form>
-    </body>
+    </title>
+</head>
+<body>
+<form method="POST">
+    <label for="username">Mobile Number: </label>
+    <input type="text" name="username" id="username"><br>
+    <label for="password1">Password: </label>
+    <input type="password" name="password1" id="password1"><br>
+    <label for="password2">Password Confirmation: </label>
+    <input type="password" name="password2" id="password2"><br>
+    <button type="submit" value="Submit">Submit</button>
+</form>
+{% if form_errors != False %}
+    {{ form_errors }}
+{% endif %}
+</body>
 </html>
