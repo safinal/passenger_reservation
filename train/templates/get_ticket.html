@@ -22,7 +22,8 @@
     <button type="submit">Submit</button>
 </form>
 {% if flag != False %}
-<p>There are only {{ trip.remain_tickets }} tickets available</p>
+    <p>There are only {{ trip.remain_tickets }} tickets available</p> <br>
+    <p>{{ flag }}</p>
 {% endif %}
 </body>
 </html>

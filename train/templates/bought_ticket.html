@@ -1,1 +1,13 @@
-Bought Ticket
+Successfully Bought Tickets: <br>
+<p>
+    {% for ticket_id in ticket_id_list %}
+        {{ ticket_id }},
+    {% endfor %}
+</p>
+<br>
+In Coupes: <br>
+<p>
+    {% for coupe_id in coupe_id_list %}
+        {{ coupe_id }},
+    {% endfor %}
+</p>

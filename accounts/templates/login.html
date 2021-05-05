@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
+<head>
+    <title>
 
-        </title>
-    </head>
-    <body>
-        <form method="POST">
-            <label for="username">Mobile Number: </label>
-            <input type="text" name="username" id="username"><br>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password"><br>
-            <button type="submit" value="Submit">Submit</button>
-        </form>
-        {% if wrong != False %}
-            <p>Wrong password or phone number</p>
-        {% endif %}
-    </body>
+    </title>
+</head>
+<body>
+<form method="POST">
+    <label for="username">Mobile Number: </label>
+    <input type="text" name="username" id="username"><br>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password"><br>
+    <button type="submit" value="Submit">Submit</button>
+</form>
+{% if wrong != False %}
+    <p>Wrong password or phone number</p>
+{% endif %}
+</body>
 </html>

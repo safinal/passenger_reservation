@@ -57,7 +57,7 @@ class Trip(models.Model):
     starting_time = models.TimeField()
     remain_tickets = models.PositiveSmallIntegerField()
     price = models.PositiveIntegerField()
-    users = models.ManyToManyField(to=User)
+    users = models.ManyToManyField(to=User, blank=True)
 
     def clean(self):
         if self.train.current_railway != self.origin_railway:
@@ -66,8 +66,8 @@ class Trip(models.Model):
             raise ValidationError("Origin and destination railways can't be the same!")
         if self.starting_date <= date.today():
             raise ValidationError("Starting date must be in the coming days!")
-        # if self.train.company not in self.origin_railway.companies or self.train.company not in self.destination_railway.companies:
-        # raise ValidationError('Origin and destination railways both must have the train company')
+        if self.train.company not in self.origin_railway.companies.all() or self.train.company not in self.destination_railway.companies.all():
+            raise ValidationError('Origin and destination railways both must have the train company')
 
     def __str__(self):
         return f'{self.id}_{self.origin_railway.city} - {self.destination_railway.city}'
@@ -77,7 +77,7 @@ class Transaction(models.Model):
     trip = models.ForeignKey(to=Trip, on_delete=models.PROTECT)
     user = models.ForeignKey(to=User, on_delete=models.PROTECT)
     date_time = models.DateTimeField(auto_now_add=True)
-    tracking_code = models.CharField(max_length=20)
+    tracking_code = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
         return self.tracking_code

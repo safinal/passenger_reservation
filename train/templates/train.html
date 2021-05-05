@@ -93,20 +93,20 @@
     <button type="submit" value="Submit">Search</button>
 </form>
 {% if trips != False %}
-{% for trip in trips %}
-<div>
-    <p>Company: {{ trip.train.company.name }}</p>
-    <p>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</p>
-    <p>Starting Date: {{ trip.starting_date }}</p>
-    <p>Starting Time: {{ trip.starting_time }}</p> <br>
-    <p>Remain Tickets: {{ trip.remain_tickets }}</p>
-    <p>Price: {{ trip.price }}</p>
-    <form method="GET" action="/train/{{ trip.id }}/">
-        <button type="submit">Get Ticket</button>
-    </form>
-    <br>
-</div>
-{% endfor %}
+    {% for trip in trips %}
+        <div>
+            <p>Company: {{ trip.train.company.name }}</p>
+            <p>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</p>
+            <p>Starting Date: {{ trip.starting_date }}</p>
+            <p>Starting Time: {{ trip.starting_time }}</p> <br>
+            <p>Remain Tickets: {{ trip.remain_tickets }}</p>
+            <p>Price: {{ trip.price }}</p>
+            <form method="GET" action="/train/{{ trip.id }}/">
+                <button type="submit">Get Ticket</button>
+            </form>
+            <br>
+        </div>
+    {% endfor %}
 {% endif %}
 
 <script>
