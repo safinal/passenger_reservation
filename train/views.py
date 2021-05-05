@@ -30,7 +30,7 @@ def train_reservation(request):
                 )
             if query.count() > 0:
                 context['trips'] = query
-        return render(request=request, template_name='train.html', context=context)
+        return render(request=request, template_name='train/train.html', context=context)
 
 
 @csrf_exempt
@@ -38,7 +38,7 @@ def train_reservation(request):
 def get_ticket(request, trip_id):
     trip = get_object_or_404(Trip, pk=trip_id)
     if request.method == 'GET':
-        return render(request=request, template_name='get_ticket.html', context={'trip': trip, 'flag': False})
+        return render(request=request, template_name='train/get_ticket.html', context={'trip': trip, 'flag': False})
     elif request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
@@ -58,6 +58,5 @@ def get_ticket(request, trip_id):
                 trip.save()
 
                 context = {'ticket_id_list': ticket_id_list, 'coupe_id_list': coupe_id_list}
-                return render(request=request, template_name='bought_ticket.html', context=context)
-        return render(request=request, template_name='get_ticket.html',
-                      context={'trip': trip, 'flag': f'{form.errors}'})
+                return render(request=request, template_name='train/bought_ticket.html', context=context)
+        return render(request, 'train/get_ticket.html', {'trip': trip, 'flag': f'{form.errors}'})
