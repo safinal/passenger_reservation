@@ -43,4 +43,3 @@ def logout(request):
     if request.method == 'POST':
         dj_logout(request)
         return redirect(to='/login/')
-    return HttpResponse('Only post method allowed')

@@ -1,42 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+	    {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Home </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'train/img/favicon.ico' %}">
 
-        body {
-            font: 16px Arial;
-        }
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'train/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/price_rangs.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/style.css' %}">
+			<style>
+        //* {
+        //    box-sizing: border-box;
+        //}
 
-        /*the container must be positioned relative:*/
+        //body {
+        //    font: 16px Arial;
+        //}
+
+        
+
+        //input {
+            //border: 1px solid transparent;
+            //background-color: #f1f1f1;
+            //padding: 10px;
+            //font-size: 16px;
+        //}
+
+        //input[type=text] {
+        //    background-color: #f1f1f1;
+        //    width: 100%;
+        //}
+
+        //input[type=submit] {
+        //    background-color: DodgerBlue;
+        //    color: #fff;
+        //    cursor: pointer;
+        //}
+		
+		/*the container must be positioned relative:*/
         .autocomplete {
             position: relative;
             display: inline-block;
         }
-
-        input {
-            border: 1px solid transparent;
-            background-color: #f1f1f1;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        input[type=text] {
-            background-color: #f1f1f1;
-            width: 100%;
-        }
-
-        input[type=submit] {
-            background-color: DodgerBlue;
-            color: #fff;
-            cursor: pointer;
-        }
-
+		
         .autocomplete-items {
-            position: absolute;
+            //position: absolute;
             border: 1px solid #d4d4d4;
             border-bottom: none;
             border-top: none;
@@ -50,175 +73,415 @@
         .autocomplete-items div {
             padding: 10px;
             cursor: pointer;
-            background-color: #fff;
+			background-color: white;
+			color: black;
             border-bottom: 1px solid #d4d4d4;
         }
 
         /*when hovering an item:*/
         .autocomplete-items div:hover {
-            background-color: #e9e9e9;
+            background-color: #ff3d1c;
         }
 
         /*when navigating through the items using the arrow keys:*/
         .autocomplete-active {
-            background-color: DodgerBlue !important;
-            color: #ffffff;
+            background-color: #0946b0 !important;
+			color: black;
         }
     </style>
-</head>
+   </head>
 
-<body>
-<form method="POST" action="/logout/">
-    <button type="submit">Logout</button>
-</form>
-<br>
-<form autocomplete="off" method="get">
-    <div class="autocomplete" style="width:300px;">
-        <label for="origin_city">Origin City: </label>
-        <input id="origin_city" type="text" name="origin_city" placeholder="City">
-    </div>
-    <br> <br>
-    <div class="autocomplete" style="width:300px;">
-        <label for="destination_city">Destination City: </label>
-        <input id="destination_city" type="text" name="destination_city" placeholder="City">
-    </div>
-    <br> <br>
-    <div style="width:300px;">
-        <label for="starting_date">Starting Date: </label>
-        <input type="date" id="starting_date" name="starting_date" required>
-    </div>
-    <br> <br>
-    <label for="full_coupe">Full Coupe: </label>
-    <input type="checkbox" id="full_coupe" name="full_coupe"> <br> <br>
-    <button type="submit" value="Submit">Search</button>
-</form>
-{% if trips != False %}
-    {% for trip in trips %}
-        <div>
-            <p>Company: {{ trip.train.company.name }}</p>
-            <p>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</p>
-            <p>Starting Date: {{ trip.starting_date }}</p>
-            <p>Starting Time: {{ trip.starting_time }}</p> <br>
-            <p>Remain Tickets: {{ trip.remain_tickets }}</p>
-            <p>Price: {{ trip.price }}</p>
-            <form method="GET" action="/train/{{ trip.id }}/">
-                <button type="submit">Get Ticket</button>
-            </form>
-            <br>
+   <body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'train/img/logo/loder.jpg' %}" alt="">
+                </div>
+            </div>
         </div>
-    {% endfor %}
-{% endif %}
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-1"> -->
+                                <!-- <div class="logo"> -->
+                                  <!-- <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <div class="col-xl-10 col-lg-10 col-md-8">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-left d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">   
+											<form id="myform" method="POST" action="/logout/">{% csrf_token %}</form>									
+                                            <li><a href="#">Home</a></li>
+                                            <li><a href="about.html">My Trips</a></li>  
+											
+											<li class="logout"><a href="#" onclick="document.getElementById('myform').submit();"><i class="ti-user"></i> Log out</a></li>
+											
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
+    <main>
 
-<script>
-    function autocomplete(inp, arr) {
-        /*the autocomplete function takes two arguments,
-        the text field element and an array of possible autocompleted values:*/
-        var currentFocus;
-        /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function (e) {
-            var a, b, i, val = this.value;
-            /*close any already open lists of autocompleted values*/
-            closeAllLists();
-            if (!val) {
-                return false;
-            }
-            currentFocus = -1;
-            /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            /*append the DIV element as a child of the autocomplete container:*/
-            this.parentNode.appendChild(a);
-            /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    /*create a DIV element for each matching element:*/
-                    b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
-                    /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function (e) {
-                        /*insert the value for the autocomplete text field:*/
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        /*close the list of autocompleted values,
-                        (or any other open lists of autocompleted values:*/
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
-                }
-            }
-        });
-        /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function (e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    /*and simulate a click on the "active" item:*/
-                    if (x) x[currentFocus].click();
-                }
-            }
-        });
+        <!-- Hero Start-->
+        <div class="hero-area3 hero-overly2 d-flex align-items-center ">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-9">
+                        <div class="hero-cap text-center pt-50 pb-20">
+                            <h2>Filter & Find Trips</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Hero End -->
+        <!-- listing Area Start -->
+        <div class="listing-area pt-120 pb-120">
+            <div class="container">
+                <div class="row">
+                    <!-- Left content -->
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="row">
+                            <div class="col-12">
+                                    <div class="small-section-tittle2 mb-45">
+                                    <h4>Advanced Filter</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Job Category Listing start -->
+						<form method="GET">
+						    <div class="category-listing mb-50">
+								<!-- single one -->
+								<div class="single-listing">
+									<!-- input -->
+									<div class="input-form">
+										<input id="origin_city" name="origin_city" type="text" placeholder="Origin City" required>
+									</div>
+									<div class="input-form">
+										<input id="destination_city" name="destination_city" type="text" placeholder="Destination City" required>
+									</div>
+									<div class="input-form">
+										<input type="date" name="starting_date" min="2021-05-01" max="2022-01-01" required>
+									</div>									
+									<!-- Select job items start -->
+									<div class="select-job-items1">
+										<select name="train_quality">
+											<option value="0">Train Qualiy</option>
+											<option value="1">One Star</option>
+											<option value="2">Two Star</option>
+											<option value="3">Three Star</option>
+											<option value="4">Four Star</option>
+											<option value="5">Five Star</option>
+										</select>
+									</div>
+									<!--  Select job items End-->
+									<!-- Select job items start -->
+									<div class="select-job-items2">
+										<select name="coupes_capacity">
+											<option value="0">Coupes Capacity</option>
+											<option value="4">Four Beds</option>
+											<option value="6">Six Beds</option>
+										</select>
+									</div>
+									<!--  Select job items End-->
+									<!-- select-Categories start -->
+									<div class="select-Categories pt-140 pb-20">
+										<label class="container">Full Coupe
+											<input name="full_coupe" type="checkbox" >
+											<span class="checkmark"></span>
+										</label>
 
-        function addActive(x) {
-            /*a function to classify an item as "active":*/
-            if (!x) return false;
-            /*start by removing the "active" class on all items:*/
-            removeActive(x);
-            if (currentFocus >= x.length) currentFocus = 0;
-            if (currentFocus < 0) currentFocus = (x.length - 1);
-            /*add class "autocomplete-active":*/
-            x[currentFocus].classList.add("autocomplete-active");
-        }
+									</div>
+									<!-- select-Categories End -->
+								</div>
 
-        function removeActive(x) {
-            /*a function to remove the "active" class from all autocomplete items:*/
-            for (var i = 0; i < x.length; i++) {
-                x[i].classList.remove("autocomplete-active");
-            }
-        }
+								<div class="single-listing">
+									<!-- Range Slider Start -->
+									<aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+										<div class="small-section-tittle2">
+											<h4>Price range</h4>
+										</div>
+										<div class="widgets_inner">
+											<div class="range_item">
+												<!-- <div id="slider-range"></div> -->
+												<input type="text" class="js-range-slider" value="" />
+												<div class="d-flex align-items-center">
+													<div class="price_text">
+														<p>Price :</p>
+													</div>
+													<div class="price_value d-flex justify-content-center">
+														<input name="price_from" type="text" class="js-input-from" id="amount" readonly />
+														<span>to</span>
+														<input name="price_to" type="text" class="js-input-to" id="amount" readonly />
+														Thousand Tomans
+													</div>
+												</div>
+											</div>
+										</div>
+									</aside>
+								  <!-- Range Slider End -->
+									 <button type="submit" class="btn list-btn mt-20">Apply Filter</button>
+								</div>
+							</div>
+						</form>
+                        <!-- Job Category Listing End -->
+                    </div>
+                    <!-- Right content -->
+                    <div class="col-xl-8 col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="count mb-35">
+                                    <span>{{ count }} Trips are available</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- listing Details Stat-->
+                        <div class="listing-details-area">
+                            <div class="container">
+                                <div class="row">
+									{% if trips != False %}
+										{% for trip in trips %}
+											<div class="col-lg-6 ">
+												<div class="single-listing mb-30">
+													<div class="list-img">
+														<img src="{% static 'train/img/gallery/list1.png' %}" alt="">
+														<!-- <span>Open</span> -->
+													</div>
+													<div class="list-caption">
+														<span>{{ trip.train.coupes_capacity }} Beds</span>
+														<h3><a href="/train/{{ trip.id }}/">{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</a></h3>
+														<p>{{ trip.train.company.name }}</p>
+														<div class="list-footer">
+															<ul>
+																<li>{{ trip.price }} Thousand Tomans</li>
+																<li>{{ trip.starting_date }} {{ trip.starting_time }}</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										{% endfor %}  
+									{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- listing Details End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- listing-area Area End -->
 
-        function closeAllLists(elmnt) {
-            /*close all autocomplete lists in the document,
-            except the one passed as an argument:*/
-            var x = document.getElementsByClassName("autocomplete-items");
-            for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
-                    x[i].parentNode.removeChild(x[i]);
-                }
-            }
-        }
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding">
+                    <div class="row justify-content-between">
 
-        /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function (e) {
-            closeAllLists(e.target);
-        });
-    }
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Quick Links</h4>
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">My Trips</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 
-    /*An array containing all the country names in the world:*/
-    var cities = ["Tehran", "Mashhad", "E\u015ffah\u0101n", "Karaj", "Tabr\u012bz", "Sh\u012br\u0101z", "Qom", "Ahv\u0101z", "Kerm\u0101nsh\u0101h", "Or\u016bm\u012byeh", "Rasht", "Kerm\u0101n", "Z\u0101hed\u0101n", "Esl\u0101mshahr", "Hamad\u0101n", "Yazd", "Ar\u0101k", "Ardab\u012bl", "Bandar \u2018Abb\u0101s", "Zanj\u0101n", "K\u0101sh\u0101n", "Qazv\u012bn", "Sanandaj", "Khorram\u0101b\u0101d", "S\u0101r\u012b", "Gorg\u0101n", "Shahr\u012b\u0101r", "Shahr-e Qods", "Mal\u0101rd", "Sart\u0101", "Dezf\u016bl", "B\u0101bol", "B\u016bk\u0101n", "Sabzev\u0101r", "\u0100mol", "P\u0101kdasht", "Najaf\u0101b\u0101d", "Bor\u016bjerd", "Madan", "Qarchak", "Var\u0101m\u012bn", "Neysh\u0101b\u016br", "S\u0101veh", "Khomeyn\u012b Shahr", "Q\u0101\u2019em Shahr", "Nas\u012bm Shahr", "Bojn\u016brd", "Bandar-e B\u016bshehr", "Khowy", "Fard\u012bs", "B\u012brjand", "Mar\u0101gheh", "S\u012brj\u0101n", "Sh\u0101h\u012bn Shahr", "Mal\u0101yer", "Saqqez", "Bandar-e M\u0101hshahr", "Mah\u0101b\u0101d", "Rafsanj\u0101n", "Shahr-e Kord", "Semn\u0101n", "Golmeh", "Gonbad-e K\u0101v\u016bs", "Sh\u0101hr\u016bd", "Marvdasht", "Q\u016bch\u0101n", "Jahrom", "Kam\u0101lshahr", "Torbat-e \u1e28eydar\u012byeh", "P\u012br\u0101nshahr", "Mar\u012bv\u0101n", "And\u012bmeshk", "Shahre\u1e95\u0101", "Z\u0101bol", "Khorramshahr", "Marand", "J\u012broft", "Bam", "Behbah\u0101n", "Dor\u016bd", "Naz\u0327ar\u0101b\u0101d", "Mo\u1e29ammad Shahr", "\u012ar\u0101nshahr", "Fas\u0101", "Bor\u0101zj\u0101n", "B\u0101neh", "Y\u0101s\u016bj", "Ch\u0101bah\u0101r", "Rob\u0101\u0163 Kar\u012bm", "Kh\u0101k-e \u2018Al\u012b", "K\u0101shmar", "Sh\u016bshtar", "Ahar", "Masjed Soleym\u0101n", "Torbat-e J\u0101m", "K\u0101zer\u016bn", "Sh\u012brv\u0101n", "Salm\u0101s", "Al\u012bg\u016bdarz", "Bon\u0101b", "T\u0101kest\u0101n", "Oshnav\u012byeh", "Bandar-e Gen\u0101veh", "Zarand", "Mob\u0101rakeh", "D\u0101mgh\u0101n", "T\u0101yb\u0101d", "Zarr\u012bn Shahr", "\u0100r\u0101n B\u012bdgol", "Hashtpar", "B\u012bj\u0101r", "Sardasht", "R\u0101mhormoz", "Golp\u0101yeg\u0101n", "Azn\u0101", "Na\u0163anz", "Tak\u0101b", "Darcheh", "Sar\u0101b", "B\u0101ft", "Khalkh\u0101l", "Fal\u0101varj\u0101n", "Sarpol-e Z\u0304ah\u0101b", "Sh\u0101h\u012bn Dezh", "Qahder\u012bj\u0101n", "H\u0101d\u012bshahr", "F\u016bman", "Sem\u012brom", "Sheyb\u0101n", "Kel\u012bsh\u0101d va S\u016bdarj\u0101n", "Goldasht", "Khv\u0101ns\u0101r", "Gaz", "Khowrz\u016bq", "Ma\u1e29m\u016bd\u0101b\u0101d Nem\u016bneh", "Kab\u016bdar\u0101hang", "Taft", "Deh\u0101q\u0101n", "T\u012br\u0101n", "Amlash", "Ardest\u0101n", "F\u0101men\u012bn", "Fereyd\u016bnshahr", "Re\u1e95v\u0101nshahr", "Ahram", "Poldasht", "Qa\u015fr-e Sh\u012br\u012bn", "Kom\u012bj\u0101n", "Ch\u0101deg\u0101n", "Kh\u016br", "Chelgard", "Esfar\u0101yen", "Khond\u0101b", "\u012al\u0101m", "Eshteh\u0101rd", "Alvand", "Fereyd\u016bn Ken\u0101r", "Bandar-e Anzal\u012b", "L\u0101h\u012bj\u0101n", "Ma\u1e29m\u016bd\u0101b\u0101d", "B\u0101bolsar", "Bandar-e Torkaman", "Langar\u016bd", "J\u016byb\u0101r", "\u0100st\u0101neh-ye Ashraf\u012byeh", "Kang\u0101n", "Bandar-e \u2018Asal\u016byeh", "\u0100st\u0101r\u0101", "\u015eowme\u2018eh Sar\u0101", "Bandar-e Gaz", "Hashtgerd", "F\u0101rs\u0101n", "\u2018Ajab Sh\u012br", "Khorramdarreh", "P\u012bshv\u0101", "Rey", "P\u0101rs\u0101b\u0101d", "M\u012b\u0101ndo\u0101b", "Narm\u0101sh\u012br", "M\u0101s\u0101l", "\u2018Al\u012b\u0101b\u0101d-e Kat\u016bl", "Malek\u0101n", "\u2018Abb\u0101s\u0101b\u0101d", "\u0100b\u0101d\u0101n", "Nah\u0101vand", "Naqadeh", "Behshahr", "\u0100z\u0101dshahr", "Jav\u0101nr\u016bd", "R\u0101m\u012b\u0101n", "Zehak", "R\u016bdsar", "Gal\u016bg\u0101h", "Bah\u0101r", "R\u0101msar", "Asad\u0101b\u0101d", "Shaft", "Nek\u0101", "Kord K\u016by", "Nowshahr", "Hars\u012bn", "G\u0101l\u012bkesh", "Kav\u0101r", "Ch\u0101l\u016bs", "\u0100q Qal\u0101", "Tonek\u0101bon", "Osk\u016b", "Qeshm", "Esl\u0101m\u0101b\u0101d-e Gharb", "P\u0101veh", "Meybod", "D\u016bst Mo\u1e29ammad Kh\u0101n", "M\u012bn\u016bdasht", "T\u016byserk\u0101n", "Moll\u0101s\u0304\u0101n\u012b", "Nam\u012bn", "\u0100byek", "Lordeg\u0101n", "Abhar", "Show\u0163", "\u0162orqabeh", "Dowlat\u0101b\u0101d", "Sh\u016bsh", "K\u016bhdasht", "Dam\u0101vand", "Eyv\u0101n", "N\u016br\u0101b\u0101d", "\u0100z\u0304arshahr", "\u015ea\u1e29neh", "K\u0101my\u0101r\u0101n", "Shahrak-e B\u0101kharz", "B\u0101gh-e Malek", "S\u012b\u0101hkal", "Shabestar", "Bor\u016bjen", "Kahn\u016bj", "Jam", "Kher\u0101meh", "Sh\u0101deg\u0101n", "Aleshtar", "Razan", "Ma\u015f\u012br\u012b", "Sar\u2018eyn", "Kal\u0101leh", "Qarah \u1e94\u012b\u0101\u2019 od D\u012bn", "Sh\u0101zand", "Sarv\u0101b\u0101d", "Khomeyn", "M\u012bn\u0101b", "Darreh Shahr", "Chen\u0101r\u0101n", "N\u016br", "S\u016bsangerd", "R\u016bd\u0101n", "Gom\u012bsh\u0101n", "Om\u012bd\u012byeh", "Tajr\u012bsh", "Shalamz\u0101r", "Dehdasht", "Germ\u012b", "P\u0101\u2019\u012bn-e B\u0101z\u0101r-e R\u016bdb\u0101r", "Rav\u0101nsar", "D\u0101r\u0101n", "Meshg\u012bn Shahr", "Sonqor", "B\u012bleh Sav\u0101r", "Mohr", "Jolf\u0101", "Qorveh", "Estahb\u0101n", "Dehgol\u0101n", "Do Gonbad\u0101n", "F\u012br\u016bz\u0101b\u0101d", "Bost\u0101n\u0101b\u0101d", "Neq\u0101b", "F\u0101r\u016bj", "Khal\u012bl\u0101b\u0101d", "M\u012b\u0101neh", "Sar\u0101bleh", "S\u012bsakht", "Sep\u012bd\u0101n", "Arsanj\u0101n", "S\u016brak", "Sar\u0101b-e D\u016breh", "Joght\u0101y", "Far\u012bm\u0101n", "B\u016b\u2019\u012bn Zahr\u0101", "D\u0101r\u0101b", "Farmah\u012bn", "R\u0101msh\u012br", "Pol-e Sef\u012bd", "Her\u012bs", "Ma\u1e29all\u0101t", "G\u0101vband\u012b", "\u0162\u0101leq\u0101n", "Bozgh\u0101n", "L\u012bkak", "G\u012bl\u0101n-e Gharb", "L\u0101l\u012b", "M\u0101k\u016b", "Sarvest\u0101n", "Char\u0101m", "Dowlat\u0101b\u0101d", "Hashtr\u016bd", "Deyr", "Seyah Cheshmeh", "Del\u012bj\u0101n", "T\u0101zeh\u0101b\u0101d", "Khom\u0101rl\u016b", "Ardal", "\u0100bbar", "Mahd\u012bshahr", "Qal\u2018eh-ye Khv\u0101jeh", "R\u0101bor", "L\u0101merd", "Zarr\u012bn\u0101b\u0101d", "D\u012bv\u0101ndarreh", "\u015eaf\u0101shahr", "S\u012br\u012bk", "Kerend-e Gharb", "N\u012br", "Mar\u0101veh Tappeh", "Bandar-e Lengeh", "B\u0101sht", "Esl\u0101m\u0101b\u0101d", "\u0100bd\u0101n\u0101n", "Poldokhtar", "Bandar-e Deylam", "Dargaz", "G\u012bv\u012b", "Sa\u2018\u0101dat Shahr", "Q\u012br", "Varazq\u0101n", "Fahraj", "\u0100shkh\u0101neh", "Sol\u0163\u0101n\u0101b\u0101d", "\u0100b\u0101deh", "Sarakhs", "Fey\u1e95\u0101b\u0101d", "Bastak", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Haftkel", "Khowrm\u016bj", "F\u012br\u016bzk\u016bh", "Ger\u0101sh", "Shahr-e Qad\u012bm-e L\u0101r", "N\u016br\u0101b\u0101d", "R\u0101sak", "F\u0101ry\u0101b", "Hoveyzeh", "\u2018Anbar\u0101b\u0101d", "Roshtkhv\u0101r", "An\u0101r", "Man\u016bj\u0101n", "Bandar-e Kham\u012br", "Arakv\u0101z-e Maleksh\u0101h\u012b", "Kaleybar", "Arz\u016b\u2019\u012byeh", "Khv\u0101f", "M\u0101m\u016bn\u012byeh", "M\u0101hnesh\u0101n", "\u0100sht\u012b\u0101n", "Garmeh", "Eql\u012bd", "N\u012bkshahr", "Neyr\u012bz", "Gon\u0101b\u0101d", "Kal\u0101t-e N\u0101der\u012b", "S\u016br\u012b\u0101n", "Z\u0101bol\u012b", "Qarah \u0100gh\u0101j", "S\u016br\u0101n", "Kon\u0101rak", "Dehlor\u0101n", "Bards\u012br", "Q\u0101\u2019en", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Mo\u1e29ammad\u0101b\u0101d", "Bardaskan", "Asad\u012byeh", "Khonj", "Hend\u012bj\u0101n", "Abark\u016bh", "Tafresh", "Sorkheh", "Garms\u0101r", "\u0100r\u0101d\u0101n", "Far\u0101shband", "Qal\u2018eh Ganj", "Kh\u0101sh", "J\u0101jarm", "Ferdows", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Bajest\u0101n", "Mehr\u012bz", "Ashkez\u0304ar", "Mehr\u0101n", "Shahr-e B\u0101bak", "Dalg\u0101n", "K\u016bhban\u0101n", "Sardasht", "Sarb\u012bsheh", "May\u0101mey", "Shahr-e Her\u0101t", "Boshr\u016byeh", "B\u0101fq", "J\u0101sk", "Ardak\u0101n", "Sar\u0101y\u0101n", "R\u0101var", "Nehband\u0101n", "\u0162abas", "N\u0101\u2019\u012bn"]
 
-    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("origin_city"), cities);
-    autocomplete(document.getElementById("destination_city"), cities);
-</script>
-</body>
+    <!-- JS here -->
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{% static 'train/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="{% static 'train/js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'train/js/popper.min.js' %}"></script>
+        <script src="{% static 'train/js/bootstrap.min.js' %}"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="{% static 'train/js/jquery.slicknav.min.js' %}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{% static 'train/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'train/js/slick.min.js' %}"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="{% static 'train/js/wow.min.js' %}"></script>
+        <script src="{% static 'train/js/price-range.js' %}"></script>
+		<script src="{% static 'train/js/animated.headline.js' %}"></script>
+        <script src="{% static 'train/js/jquery.magnific-popup.js' %}"></script>
+
+		<!-- Nice-select, sticky -->
+        <script src="{% static 'train/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'train/js/jquery.sticky.js' %}"></script>
+        
+        <!-- contact js -->
+        <script src="{% static 'train/js/contact.js' %}"></script>
+        <script src="{% static 'train/js/jquery.form.js' %}"></script>
+        <script src="{% static 'train/js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'train/js/mail-script.js' %}"></script>
+        <script src="{% static 'train/js/jquery.ajaxchimp.min.js' %}"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="{% static 'train/js/plugins.js' %}"></script>
+        <script src="{% static 'train/js/main.js' %}"></script>
+        <script>
+			function autocomplete(inp, arr) {
+				/*the autocomplete function takes two arguments,
+				the text field element and an array of possible autocompleted values:*/
+				var currentFocus;
+				/*execute a function when someone writes in the text field:*/
+				inp.addEventListener("input", function (e) {
+					var a, b, i, val = this.value;
+					/*close any already open lists of autocompleted values*/
+					closeAllLists();
+					if (!val) {
+						return false;
+					}
+					currentFocus = -1;
+					/*create a DIV element that will contain the items (values):*/
+					a = document.createElement("DIV");
+					a.setAttribute("id", this.id + "autocomplete-list");
+					a.setAttribute("class", "autocomplete-items");
+					/*append the DIV element as a child of the autocomplete container:*/
+					this.parentNode.appendChild(a);
+					/*for each item in the array...*/
+					for (i = 0; i < arr.length; i++) {
+						/*check if the item starts with the same letters as the text field value:*/
+						if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+							/*create a DIV element for each matching element:*/
+							b = document.createElement("DIV");
+							/*make the matching letters bold:*/
+							b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+							b.innerHTML += arr[i].substr(val.length);
+							/*insert a input field that will hold the current array item's value:*/
+							b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+							/*execute a function when someone clicks on the item value (DIV element):*/
+							b.addEventListener("click", function (e) {
+								/*insert the value for the autocomplete text field:*/
+								inp.value = this.getElementsByTagName("input")[0].value;
+								/*close the list of autocompleted values,
+								(or any other open lists of autocompleted values:*/
+								closeAllLists();
+							});
+							a.appendChild(b);
+						}
+					}
+				});
+				/*execute a function presses a key on the keyboard:*/
+				inp.addEventListener("keydown", function (e) {
+					var x = document.getElementById(this.id + "autocomplete-list");
+					if (x) x = x.getElementsByTagName("div");
+					if (e.keyCode == 40) {
+						/*If the arrow DOWN key is pressed,
+						increase the currentFocus variable:*/
+						currentFocus++;
+						/*and and make the current item more visible:*/
+						addActive(x);
+					} else if (e.keyCode == 38) { //up
+						/*If the arrow UP key is pressed,
+						decrease the currentFocus variable:*/
+						currentFocus--;
+						/*and and make the current item more visible:*/
+						addActive(x);
+					} else if (e.keyCode == 13) {
+						/*If the ENTER key is pressed, prevent the form from being submitted,*/
+						e.preventDefault();
+						if (currentFocus > -1) {
+							/*and simulate a click on the "active" item:*/
+							if (x) x[currentFocus].click();
+						}
+					}
+				});
+
+				function addActive(x) {
+					/*a function to classify an item as "active":*/
+					if (!x) return false;
+					/*start by removing the "active" class on all items:*/
+					removeActive(x);
+					if (currentFocus >= x.length) currentFocus = 0;
+					if (currentFocus < 0) currentFocus = (x.length - 1);
+					/*add class "autocomplete-active":*/
+					x[currentFocus].classList.add("autocomplete-active");
+				}
+
+				function removeActive(x) {
+					/*a function to remove the "active" class from all autocomplete items:*/
+					for (var i = 0; i < x.length; i++) {
+						x[i].classList.remove("autocomplete-active");
+					}
+				}
+
+				function closeAllLists(elmnt) {
+					/*close all autocomplete lists in the document,
+					except the one passed as an argument:*/
+					var x = document.getElementsByClassName("autocomplete-items");
+					for (var i = 0; i < x.length; i++) {
+						if (elmnt != x[i] && elmnt != inp) {
+							x[i].parentNode.removeChild(x[i]);
+						}
+					}
+				}
+
+				/*execute a function when someone clicks in the document:*/
+				document.addEventListener("click", function (e) {
+					closeAllLists(e.target);
+				});
+			}
+
+			/*An array containing all the country names in the world:*/
+			var cities = ["Tehran", "Mashhad", "E\u015ffah\u0101n", "Karaj", "Tabr\u012bz", "Sh\u012br\u0101z", "Qom", "Ahv\u0101z", "Kerm\u0101nsh\u0101h", "Or\u016bm\u012byeh", "Rasht", "Kerm\u0101n", "Z\u0101hed\u0101n", "Esl\u0101mshahr", "Hamad\u0101n", "Yazd", "Ar\u0101k", "Ardab\u012bl", "Bandar \u2018Abb\u0101s", "Zanj\u0101n", "K\u0101sh\u0101n", "Qazv\u012bn", "Sanandaj", "Khorram\u0101b\u0101d", "S\u0101r\u012b", "Gorg\u0101n", "Shahr\u012b\u0101r", "Shahr-e Qods", "Mal\u0101rd", "Sart\u0101", "Dezf\u016bl", "B\u0101bol", "B\u016bk\u0101n", "Sabzev\u0101r", "\u0100mol", "P\u0101kdasht", "Najaf\u0101b\u0101d", "Bor\u016bjerd", "Madan", "Qarchak", "Var\u0101m\u012bn", "Neysh\u0101b\u016br", "S\u0101veh", "Khomeyn\u012b Shahr", "Q\u0101\u2019em Shahr", "Nas\u012bm Shahr", "Bojn\u016brd", "Bandar-e B\u016bshehr", "Khowy", "Fard\u012bs", "B\u012brjand", "Mar\u0101gheh", "S\u012brj\u0101n", "Sh\u0101h\u012bn Shahr", "Mal\u0101yer", "Saqqez", "Bandar-e M\u0101hshahr", "Mah\u0101b\u0101d", "Rafsanj\u0101n", "Shahr-e Kord", "Semn\u0101n", "Golmeh", "Gonbad-e K\u0101v\u016bs", "Sh\u0101hr\u016bd", "Marvdasht", "Q\u016bch\u0101n", "Jahrom", "Kam\u0101lshahr", "Torbat-e \u1e28eydar\u012byeh", "P\u012br\u0101nshahr", "Mar\u012bv\u0101n", "And\u012bmeshk", "Shahre\u1e95\u0101", "Z\u0101bol", "Khorramshahr", "Marand", "J\u012broft", "Bam", "Behbah\u0101n", "Dor\u016bd", "Naz\u0327ar\u0101b\u0101d", "Mo\u1e29ammad Shahr", "\u012ar\u0101nshahr", "Fas\u0101", "Bor\u0101zj\u0101n", "B\u0101neh", "Y\u0101s\u016bj", "Ch\u0101bah\u0101r", "Rob\u0101\u0163 Kar\u012bm", "Kh\u0101k-e \u2018Al\u012b", "K\u0101shmar", "Sh\u016bshtar", "Ahar", "Masjed Soleym\u0101n", "Torbat-e J\u0101m", "K\u0101zer\u016bn", "Sh\u012brv\u0101n", "Salm\u0101s", "Al\u012bg\u016bdarz", "Bon\u0101b", "T\u0101kest\u0101n", "Oshnav\u012byeh", "Bandar-e Gen\u0101veh", "Zarand", "Mob\u0101rakeh", "D\u0101mgh\u0101n", "T\u0101yb\u0101d", "Zarr\u012bn Shahr", "\u0100r\u0101n B\u012bdgol", "Hashtpar", "B\u012bj\u0101r", "Sardasht", "R\u0101mhormoz", "Golp\u0101yeg\u0101n", "Azn\u0101", "Na\u0163anz", "Tak\u0101b", "Darcheh", "Sar\u0101b", "B\u0101ft", "Khalkh\u0101l", "Fal\u0101varj\u0101n", "Sarpol-e Z\u0304ah\u0101b", "Sh\u0101h\u012bn Dezh", "Qahder\u012bj\u0101n", "H\u0101d\u012bshahr", "F\u016bman", "Sem\u012brom", "Sheyb\u0101n", "Kel\u012bsh\u0101d va S\u016bdarj\u0101n", "Goldasht", "Khv\u0101ns\u0101r", "Gaz", "Khowrz\u016bq", "Ma\u1e29m\u016bd\u0101b\u0101d Nem\u016bneh", "Kab\u016bdar\u0101hang", "Taft", "Deh\u0101q\u0101n", "T\u012br\u0101n", "Amlash", "Ardest\u0101n", "F\u0101men\u012bn", "Fereyd\u016bnshahr", "Re\u1e95v\u0101nshahr", "Ahram", "Poldasht", "Qa\u015fr-e Sh\u012br\u012bn", "Kom\u012bj\u0101n", "Ch\u0101deg\u0101n", "Kh\u016br", "Chelgard", "Esfar\u0101yen", "Khond\u0101b", "\u012al\u0101m", "Eshteh\u0101rd", "Alvand", "Fereyd\u016bn Ken\u0101r", "Bandar-e Anzal\u012b", "L\u0101h\u012bj\u0101n", "Ma\u1e29m\u016bd\u0101b\u0101d", "B\u0101bolsar", "Bandar-e Torkaman", "Langar\u016bd", "J\u016byb\u0101r", "\u0100st\u0101neh-ye Ashraf\u012byeh", "Kang\u0101n", "Bandar-e \u2018Asal\u016byeh", "\u0100st\u0101r\u0101", "\u015eowme\u2018eh Sar\u0101", "Bandar-e Gaz", "Hashtgerd", "F\u0101rs\u0101n", "\u2018Ajab Sh\u012br", "Khorramdarreh", "P\u012bshv\u0101", "Rey", "P\u0101rs\u0101b\u0101d", "M\u012b\u0101ndo\u0101b", "Narm\u0101sh\u012br", "M\u0101s\u0101l", "\u2018Al\u012b\u0101b\u0101d-e Kat\u016bl", "Malek\u0101n", "\u2018Abb\u0101s\u0101b\u0101d", "\u0100b\u0101d\u0101n", "Nah\u0101vand", "Naqadeh", "Behshahr", "\u0100z\u0101dshahr", "Jav\u0101nr\u016bd", "R\u0101m\u012b\u0101n", "Zehak", "R\u016bdsar", "Gal\u016bg\u0101h", "Bah\u0101r", "R\u0101msar", "Asad\u0101b\u0101d", "Shaft", "Nek\u0101", "Kord K\u016by", "Nowshahr", "Hars\u012bn", "G\u0101l\u012bkesh", "Kav\u0101r", "Ch\u0101l\u016bs", "\u0100q Qal\u0101", "Tonek\u0101bon", "Osk\u016b", "Qeshm", "Esl\u0101m\u0101b\u0101d-e Gharb", "P\u0101veh", "Meybod", "D\u016bst Mo\u1e29ammad Kh\u0101n", "M\u012bn\u016bdasht", "T\u016byserk\u0101n", "Moll\u0101s\u0304\u0101n\u012b", "Nam\u012bn", "\u0100byek", "Lordeg\u0101n", "Abhar", "Show\u0163", "\u0162orqabeh", "Dowlat\u0101b\u0101d", "Sh\u016bsh", "K\u016bhdasht", "Dam\u0101vand", "Eyv\u0101n", "N\u016br\u0101b\u0101d", "\u0100z\u0304arshahr", "\u015ea\u1e29neh", "K\u0101my\u0101r\u0101n", "Shahrak-e B\u0101kharz", "B\u0101gh-e Malek", "S\u012b\u0101hkal", "Shabestar", "Bor\u016bjen", "Kahn\u016bj", "Jam", "Kher\u0101meh", "Sh\u0101deg\u0101n", "Aleshtar", "Razan", "Ma\u015f\u012br\u012b", "Sar\u2018eyn", "Kal\u0101leh", "Qarah \u1e94\u012b\u0101\u2019 od D\u012bn", "Sh\u0101zand", "Sarv\u0101b\u0101d", "Khomeyn", "M\u012bn\u0101b", "Darreh Shahr", "Chen\u0101r\u0101n", "N\u016br", "S\u016bsangerd", "R\u016bd\u0101n", "Gom\u012bsh\u0101n", "Om\u012bd\u012byeh", "Tajr\u012bsh", "Shalamz\u0101r", "Dehdasht", "Germ\u012b", "P\u0101\u2019\u012bn-e B\u0101z\u0101r-e R\u016bdb\u0101r", "Rav\u0101nsar", "D\u0101r\u0101n", "Meshg\u012bn Shahr", "Sonqor", "B\u012bleh Sav\u0101r", "Mohr", "Jolf\u0101", "Qorveh", "Estahb\u0101n", "Dehgol\u0101n", "Do Gonbad\u0101n", "F\u012br\u016bz\u0101b\u0101d", "Bost\u0101n\u0101b\u0101d", "Neq\u0101b", "F\u0101r\u016bj", "Khal\u012bl\u0101b\u0101d", "M\u012b\u0101neh", "Sar\u0101bleh", "S\u012bsakht", "Sep\u012bd\u0101n", "Arsanj\u0101n", "S\u016brak", "Sar\u0101b-e D\u016breh", "Joght\u0101y", "Far\u012bm\u0101n", "B\u016b\u2019\u012bn Zahr\u0101", "D\u0101r\u0101b", "Farmah\u012bn", "R\u0101msh\u012br", "Pol-e Sef\u012bd", "Her\u012bs", "Ma\u1e29all\u0101t", "G\u0101vband\u012b", "\u0162\u0101leq\u0101n", "Bozgh\u0101n", "L\u012bkak", "G\u012bl\u0101n-e Gharb", "L\u0101l\u012b", "M\u0101k\u016b", "Sarvest\u0101n", "Char\u0101m", "Dowlat\u0101b\u0101d", "Hashtr\u016bd", "Deyr", "Seyah Cheshmeh", "Del\u012bj\u0101n", "T\u0101zeh\u0101b\u0101d", "Khom\u0101rl\u016b", "Ardal", "\u0100bbar", "Mahd\u012bshahr", "Qal\u2018eh-ye Khv\u0101jeh", "R\u0101bor", "L\u0101merd", "Zarr\u012bn\u0101b\u0101d", "D\u012bv\u0101ndarreh", "\u015eaf\u0101shahr", "S\u012br\u012bk", "Kerend-e Gharb", "N\u012br", "Mar\u0101veh Tappeh", "Bandar-e Lengeh", "B\u0101sht", "Esl\u0101m\u0101b\u0101d", "\u0100bd\u0101n\u0101n", "Poldokhtar", "Bandar-e Deylam", "Dargaz", "G\u012bv\u012b", "Sa\u2018\u0101dat Shahr", "Q\u012br", "Varazq\u0101n", "Fahraj", "\u0100shkh\u0101neh", "Sol\u0163\u0101n\u0101b\u0101d", "\u0100b\u0101deh", "Sarakhs", "Fey\u1e95\u0101b\u0101d", "Bastak", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Haftkel", "Khowrm\u016bj", "F\u012br\u016bzk\u016bh", "Ger\u0101sh", "Shahr-e Qad\u012bm-e L\u0101r", "N\u016br\u0101b\u0101d", "R\u0101sak", "F\u0101ry\u0101b", "Hoveyzeh", "\u2018Anbar\u0101b\u0101d", "Roshtkhv\u0101r", "An\u0101r", "Man\u016bj\u0101n", "Bandar-e Kham\u012br", "Arakv\u0101z-e Maleksh\u0101h\u012b", "Kaleybar", "Arz\u016b\u2019\u012byeh", "Khv\u0101f", "M\u0101m\u016bn\u012byeh", "M\u0101hnesh\u0101n", "\u0100sht\u012b\u0101n", "Garmeh", "Eql\u012bd", "N\u012bkshahr", "Neyr\u012bz", "Gon\u0101b\u0101d", "Kal\u0101t-e N\u0101der\u012b", "S\u016br\u012b\u0101n", "Z\u0101bol\u012b", "Qarah \u0100gh\u0101j", "S\u016br\u0101n", "Kon\u0101rak", "Dehlor\u0101n", "Bards\u012br", "Q\u0101\u2019en", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Mo\u1e29ammad\u0101b\u0101d", "Bardaskan", "Asad\u012byeh", "Khonj", "Hend\u012bj\u0101n", "Abark\u016bh", "Tafresh", "Sorkheh", "Garms\u0101r", "\u0100r\u0101d\u0101n", "Far\u0101shband", "Qal\u2018eh Ganj", "Kh\u0101sh", "J\u0101jarm", "Ferdows", "\u1e28\u0101jj\u012b\u0101b\u0101d", "Bajest\u0101n", "Mehr\u012bz", "Ashkez\u0304ar", "Mehr\u0101n", "Shahr-e B\u0101bak", "Dalg\u0101n", "K\u016bhban\u0101n", "Sardasht", "Sarb\u012bsheh", "May\u0101mey", "Shahr-e Her\u0101t", "Boshr\u016byeh", "B\u0101fq", "J\u0101sk", "Ardak\u0101n", "Sar\u0101y\u0101n", "R\u0101var", "Nehband\u0101n", "\u0162abas", "N\u0101\u2019\u012bn"]
+
+			/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+			autocomplete(document.getElementById("origin_city"), cities);
+			autocomplete(document.getElementById("destination_city"), cities);
+		</script>
+    </body>
 </html>

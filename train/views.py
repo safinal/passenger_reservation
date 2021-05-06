@@ -15,21 +15,30 @@ def train_reservation(request):
         context = {'trips': False}
         if request.GET.get('origin_city'):
             if request.GET.get('full_coupe'):
-                query = Trip.objects.filter(
-                    origin_railway__city=request.GET.get('origin_city'),
-                    destination_railway__city=request.GET.get('destination_city'),
-                    starting_date=request.GET.get('starting_date'),
-                    remain_tickets__gte=F('train__coupes_capacity')
-                )
+                tickets_condition = F('train__coupes_capacity')
             else:
-                query = Trip.objects.filter(
-                    origin_railway__city=request.GET.get('origin_city'),
-                    destination_railway__city=request.GET.get('destination_city'),
-                    starting_date=request.GET.get('starting_date'),
-                    remain_tickets__gte=1
-                )
+                tickets_condition = 1
+            if int(request.GET.get('coupes_capacity', 0)) != 0:
+                coupes_capacity = (int(request.GET.get('coupes_capacity')),)
+            else:
+                coupes_capacity = (4, 6)
+            if int(request.GET.get('train_quality', 0)) != 0:
+                train_quality = (int(request.GET.get('train_quality')),)
+            else:
+                train_quality = (1, 2, 3, 4, 5)
+            query = Trip.objects.filter(
+                origin_railway__city=request.GET.get('origin_city'),
+                destination_railway__city=request.GET.get('destination_city'),
+                starting_date=request.GET.get('starting_date'),
+                remain_tickets__gte=tickets_condition,
+                price__gte=request.GET.get('price_from', 0),
+                price__lte=request.GET.get('price_to', 1000),
+                train__coupes_capacity__in=coupes_capacity,
+                train__quality__in=train_quality
+            )
             if query.count() > 0:
                 context['trips'] = query
+            context['count'] = query.count()
         return render(request=request, template_name='train/train.html', context=context)
 
 
