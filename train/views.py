@@ -1,6 +1,8 @@
+from datetime import date
 import math
 
 from django.db.models import F
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
@@ -50,7 +52,7 @@ def get_ticket(request, trip_id):
         return render(request=request, template_name='train/get_ticket.html', context={'trip': trip, 'flag': False})
     elif request.method == 'POST':
         form = TransactionForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and trip.starting_date >= date.today():
             tickets_number = form.cleaned_data.get('tickets_number')
             if tickets_number <= trip.remain_tickets:
                 first_ticket_id = trip.train.total_capacity - trip.remain_tickets + 1
@@ -69,3 +71,10 @@ def get_ticket(request, trip_id):
                 context = {'ticket_id_list': ticket_id_list, 'coupe_id_list': coupe_id_list}
                 return render(request=request, template_name='train/bought_ticket.html', context=context)
         return render(request, 'train/get_ticket.html', {'trip': trip, 'flag': f'{form.errors}'})
+
+
+@login_required(login_url='/login/')
+def my_trips(request):
+    if request.method == 'GET':
+        trips = request.user.trip_set.all()
+        return render(request, 'train/my_trips.html', {'trips': trips, 'count': trips.count()})

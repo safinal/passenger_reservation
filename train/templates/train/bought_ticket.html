@@ -1,13 +1,196 @@
-Successfully Bought Tickets: <br>
-<p>
-    {% for ticket_id in ticket_id_list %}
-        {{ ticket_id }},
-    {% endfor %}
-</p>
-<br>
-In Coupes: <br>
-<p>
-    {% for coupe_id in coupe_id_list %}
-        {{ coupe_id }},
-    {% endfor %}
-</p>
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+	    {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Transaction Verified! </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'train/img/favicon.ico' %}">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'train/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/price_rangs.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'train/css/style.css' %}">
+   </head>
+
+   <body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'train/img/logo/loder.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-1"> -->
+                                <!-- <div class="logo"> -->
+                                  <!-- <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <div class="col-xl-10 col-lg-10 col-md-8">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-left d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">   
+											<form id="myform" method="POST" action="/logout/">{% csrf_token %}</form>									
+                                            <li><a href="/train/">Home</a></li>
+                                            <li><a href="/train/my_trips/">My Trips</a></li>  
+											
+											<li class="logout"><a href="#" onclick="document.getElementById('myform').submit();"><i class="ti-user"></i> Log out</a></li>
+											
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
+	    <main>
+
+        <!-- Hero Start-->
+        <div class="hero-area3 hero-overly2 d-flex align-items-center ">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-9">
+                        <div class="hero-cap text-center pt-50 pb-20">
+                            <h2>Transaction Verified!</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Hero End -->
+        <!-- listing Area Start -->
+        <div class="listing-area pt-120 pb-120">
+            <div class="container">
+                <div class="row">
+						<section class="sample-text-area">
+							<div class="container box_1170">
+								<h3 class="text-heading">Successfully Bought Tickets: </h3>
+								<p class="sample-text">
+									{% for ticket_id in ticket_id_list %}
+										{{ ticket_id }},
+									{% endfor %}	
+								</p>
+								<h3 class="text-heading">In Coupes: </h3>
+								<p class="sample-text">
+									{% for coupe_id in coupe_id_list %} 
+										{{ coupe_id }}, 
+									{% endfor %} 
+								</p>								
+							</div>
+						</section>
+                </div>
+            </div>
+        </div>
+    </main>
+	<footer>
+        <!-- Footer Start-->
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding">
+                    <div class="row justify-content-between">
+
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Quick Links</h4>
+                                    <ul>
+                                        <li><a href="/train/">Home</a></li>
+                                        <li><a href="/train/my_trips/">My Trips</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+
+    <!-- JS here -->
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{% static 'train/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="{% static 'train/js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'train/js/popper.min.js' %}"></script>
+        <script src="{% static 'train/js/bootstrap.min.js' %}"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="{% static 'train/js/jquery.slicknav.min.js' %}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{% static 'train/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'train/js/slick.min.js' %}"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="{% static 'train/js/wow.min.js' %}"></script>
+        <script src="{% static 'train/js/price-range.js' %}"></script>
+		<script src="{% static 'train/js/animated.headline.js' %}"></script>
+        <script src="{% static 'train/js/jquery.magnific-popup.js' %}"></script>
+
+		<!-- Nice-select, sticky -->
+        <script src="{% static 'train/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'train/js/jquery.sticky.js' %}"></script>
+        
+        <!-- contact js -->
+        <script src="{% static 'train/js/contact.js' %}"></script>
+        <script src="{% static 'train/js/jquery.form.js' %}"></script>
+        <script src="{% static 'train/js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'train/js/mail-script.js' %}"></script>
+        <script src="{% static 'train/js/jquery.ajaxchimp.min.js' %}"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="{% static 'train/js/plugins.js' %}"></script>
+        <script src="{% static 'train/js/main.js' %}"></script>
+	</body>
+</html>

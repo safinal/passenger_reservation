@@ -123,8 +123,8 @@
                                     <nav>
                                         <ul id="navigation">   
 											<form id="myform" method="POST" action="/logout/">{% csrf_token %}</form>									
-                                            <li><a href="#">Home</a></li>
-                                            <li><a href="about.html">My Trips</a></li>  
+                                            <li><a href="/train/">Home</a></li>
+                                            <li><a href="/train/my_trips/">My Trips</a></li>  
 											
 											<li class="logout"><a href="#" onclick="document.getElementById('myform').submit();"><i class="ti-user"></i> Log out</a></li>
 											
@@ -267,13 +267,13 @@
 											<div class="col-lg-6 ">
 												<div class="single-listing mb-30">
 													<div class="list-img">
-														<img src="{% static 'train/img/gallery/list1.png' %}" alt="">
+														<a href="/train/{{ trip.id }}/"><img src="{{ trip.train.company.logo.url }}" alt=""></a>
 														<!-- <span>Open</span> -->
 													</div>
 													<div class="list-caption">
-														<span>{{ trip.train.coupes_capacity }} Beds</span>
+														<span>{{ trip.remain_tickets }} Tickets</span>
 														<h3><a href="/train/{{ trip.id }}/">{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</a></h3>
-														<p>{{ trip.train.company.name }}</p>
+														<p>{{ trip.train.company.name }} Company - {{ trip.train.coupes_capacity }} Bed Coupes - {{ trip.train.quality }} Stars</p>
 														<div class="list-footer">
 															<ul>
 																<li>{{ trip.price }} Thousand Tomans</li>
@@ -308,8 +308,8 @@
                                 <div class="footer-tittle">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">My Trips</a></li>
+                                        <li><a href="/train/">Home</a></li>
+                                        <li><a href="/train/my_trips/">My Trips</a></li>
                                     </ul>
                                 </div>
                             </div>

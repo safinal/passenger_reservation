@@ -4,7 +4,7 @@
 	    {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Payment </title>
+        <title>My Trips </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -77,7 +77,7 @@
        </div>
         <!-- Header End -->
     </header>
-	    <main>
+    <main>
 
         <!-- Hero Start-->
         <div class="hero-area3 hero-overly2 d-flex align-items-center ">
@@ -85,7 +85,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-9">
                         <div class="hero-cap text-center pt-50 pb-20">
-                            <h2>Payment</h2>
+                            <h2>My Trips</h2>
                         </div>
                     </div>
                 </div>
@@ -96,73 +96,54 @@
         <div class="listing-area pt-120 pb-120">
             <div class="container">
                 <div class="row">
-					
-					<!-- <p>Company: {{ trip.train.company.name }}</p> -->
-					<!-- <p>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</p> -->
-					<!-- <p>Starting Date: {{ trip.starting_date }}</p> -->
-					<!-- <p>Starting Time: {{ trip.starting_time }}</p> <br> -->
-					<!-- <p>Remain Tickets: {{ trip.remain_tickets }}</p> -->
-					<!-- <p>Price: {{ trip.price }}</p> -->
-
+                    <!-- Right content -->
                     <div class="col-xl-8 col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="count mb-35">
+                                    <span>You Had {{ count }} Trips</span>
+                                </div>
+                            </div>
+                        </div>
                         <!-- listing Details Stat-->
                         <div class="listing-details-area">
                             <div class="container">
                                 <div class="row">
-									<div class="col-lg-10">
-										<div class="single-listing mb-30">
-											<div class="list-img">
-												<img src="{{ trip.train.company.logo.url }}" alt="">
-												<!-- <span>Open</span> -->
-											</div>
-											<div class="list-caption">
-												<span>{{ trip.remain_tickets }} Tickets</span>
-												<h3>{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</h3>
-												<p>{{ trip.train.company.name }} Company - {{ trip.train.coupes_capacity }} Bed Coupes - {{ trip.train.quality }} Stars</p>
-												<div class="list-footer">
-													<ul>
-														<li>{{ trip.price }} Thousand Tomans</li>
-														<li>{{ trip.starting_date }} {{ trip.starting_time }}</li>
-													</ul>
+								
+									{% for trip in trips %}
+										<div class="col-lg-6 ">
+											<div class="single-listing mb-30">
+												<div class="list-img">
+                                                    <a href="/train/{{ trip.id }}/"><img src="{{ trip.train.company.logo.url }}" alt=""></a>
+													<!-- <span>Open</span> -->
+												</div>
+												<div class="list-caption">
+													<span>{{ trip.remain_tickets }} Tickets</span>
+													<h3><a href="/train/{{ trip.id }}/">{{ trip.origin_railway.city }} - {{ trip.destination_railway.city }}</a></h3>
+													<p>{{ trip.train.company.name }} Company - {{ trip.train.coupes_capacity }} Bed Coupes - {{ trip.train.quality }} Stars</p>
+													<div class="list-footer">
+														<ul>
+															<li>{{ trip.price }} Thousand Tomans</li>
+															<li>{{ trip.starting_date }} {{ trip.starting_time }}</li>
+														</ul>
+													</div>
 												</div>
 											</div>
-											<div>
-												<form method="POST" action="."> 
-													<div class="category-listing mb-50">
-														<div class="single-listing"> 
-															<div class="input-form mt-10"> 
-															
-																<input name="tickets_number" type="number" placeholder="Tickets Number" required> 
-															</div> 
-															<div class="input-form">
-																<input name="tracking_code" type="text" placeholder="Tracking Code" required> 
-															</div>		
-															<button type="submit" class="btn">Get Ticket</button>
-														</div> 
-													</div> 
-												</form> 
-											</div>											
 										</div>
-									</div>
+									{% endfor %}  
+								
                                 </div>
                             </div>
                         </div>
                         <!-- listing Details End -->
                     </div>
-					<section>
-					{% if flag != False %}
-						<strong>There are only {{ trip.remain_tickets }} tickets available <br><br>
-						{{ flag }}
-						</strong>
-					{% endif %}
-					</section>
-				
-				
-				</div>	
+                </div>
             </div>
         </div>
+        <!-- listing-area Area End -->
+
     </main>
-	<footer>
+    <footer>
         <!-- Footer Start-->
         <div class="footer-area">
             <div class="container">
@@ -238,5 +219,5 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="{% static 'train/js/plugins.js' %}"></script>
         <script src="{% static 'train/js/main.js' %}"></script>
-	</body>
+    </body>
 </html>

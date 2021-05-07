@@ -8,6 +8,7 @@ from accounts.models import User
 
 class Company(models.Model):
     name = models.CharField(max_length=50)
+    logo = models.ImageField(upload_to='train/images')
 
     def __str__(self):
         return self.name
