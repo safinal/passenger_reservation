@@ -45,6 +45,8 @@ class Train(models.Model):
     def clean(self):
         if self.total_capacity % self.coupes_capacity != 0:
             raise ValidationError('Total capacity must be a coefficient of coupes capacity!')
+        if self.company not in self.current_railway.companies.all():
+            raise ValidationError('The current railway must have the train company!')
 
     def __str__(self):
         return f'Train{self.id} - {self.company.name}'
